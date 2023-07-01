@@ -7,10 +7,7 @@ var isSubsequence = function(s, t) {
   let sIdx = 0;
   let tIdx = 0;
 
-  while (sIdx < s.length && tIdx < t.length) {
-    if (!(t.includes(s[sIdx]))) {
-      return false;
-    }
+  while (tIdx < t.length) {
 
     if (s[sIdx] === t[tIdx]) {
       sIdx++;
