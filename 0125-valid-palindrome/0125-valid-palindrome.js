@@ -9,13 +9,14 @@ var isPalindrome = function (s) {
     let right = s.length - 1;
 
     while (left < right) {
-        if (chars[left] === chars[right]) {
-            console.log(chars[left], chars[right]);
+        while ((left < right) && (alphanum.indexOf(chars[left]) === -1)) {
             left++;
+        }
+        while ((left < right) && (alphanum.indexOf(chars[right]) === -1)) {
             right--;
-        } else if (alphanum.indexOf(chars[left]) === -1) {
+        }
+        if (chars[left] === chars[right]) {
             left++;
-        } else if (alphanum.indexOf(chars[right]) === -1) {
             right--;
         } else {
             return false;
