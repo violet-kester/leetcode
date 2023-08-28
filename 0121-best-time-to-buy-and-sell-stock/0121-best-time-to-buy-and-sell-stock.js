@@ -2,19 +2,29 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
-    let maxProfit = 0;
-    let buy = 0;
-    let sell = 1;
+var maxProfit = function (prices) {
+    // left and right pointers iterate over days `i`
+    let buyDay = 0; // left pointer
+    let sellDay = 1; // right pointer
+    let profit = 0;
+    let currentMaxProfit = 0;
 
-    while (sell < prices.length) {
-        if (prices[buy] > prices[sell]) {
-            buy = sell;
+    while (sellDay < prices.length) {
+        profit = prices[sellDay] - prices[buyDay];
+        // if profit is negative,
+        // update left and right pointers
+        if (profit <= 0) {
+            // set buy day to sell day - the current minimum value
+            buyDay = sellDay;
+            // increment sell day
+            sellDay++;
         } else {
-            profit = prices[sell] - prices[buy];
-            maxProfit = profit > maxProfit ? profit : maxProfit;
+            // calculate and set current max profit
+            currentMaxProfit = profit > currentMaxProfit ? profit : currentMaxProfit;
+            // increment sell day
+            sellDay++;
         }
-        sell++;
-    }   
-    return maxProfit;
+    }
+
+    return currentMaxProfit;
 };
